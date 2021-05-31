@@ -17,7 +17,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SONAR_LOCAL') {
-                    sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=Simple-Java -Dsonar.host.url=http://192.168.0.120:9000 -Dsonar.login=f61e2296c7ae27622f895cc6b772b08fe68927ab -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/mvn/**,**/src/test/**,**/model/**,**Application.java"
+                    sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=Maven-web -Dsonar.host.url=http://192.168.0.120:9000 -Dsonar.login=6c7eaea8d853f2f3db2f982a0e87c741ab477806 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/mvn/**,**/src/test/**,**/model/**,**Application.java"
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         }
         stage ('Deploy Test') {
             steps {
-                deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://192.168.0.120:8001/')], contextPath: 'simple', war: 'target/simple.war'
+                deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://192.168.0.120:8001/')], contextPath: 'api', war: 'target/api.war'
             }
         }
     }
