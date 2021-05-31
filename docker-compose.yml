@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    container_name: pg-prod
+    container_name: pg-api-prod
     image: postgres:9.6
     networks:
       - prod_net_back
