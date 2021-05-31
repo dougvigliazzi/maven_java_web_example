@@ -41,5 +41,11 @@ pipeline {
             }
         }
     }
+        post {
+        always {
+            //junit allowEmptyResults: true, testResults: 'functional-test/target/failsafe-reports/*.xml, functional-test/target/surefire-reports/*.xml, api-test/target/surefire-reports/*.xml'
+            archiveArtifacts artifacts: 'target/api.war', followSymlinks: false, onlyIfSuccessful: true
+        }
+    }
 
 }
