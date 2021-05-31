@@ -29,9 +29,15 @@ pipeline {
                 }            
             }
         }
-        stage ('Deploy Test') {
+        stage ('Deploy Test ENV') {
             steps {
                 deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://192.168.0.120:8001/')], contextPath: 'api', war: 'target/api.war'
+            }
+        }
+        stage ('Deploy Prod ENV') {
+            steps {
+                sh 'docker-compose build'
+                sh 'docker-compose up -d'
             }
         }
     }
